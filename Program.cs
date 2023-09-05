@@ -9,13 +9,7 @@ string? resp = Console.ReadLine();
 if (resp == "1")
 {
     // TODO: create data file
-}
-else if (resp == "2")
-{
-    // TODO: parse data file
-    // create data file
-
-    // ask a question
+        // ask a question
     Console.WriteLine("How many weeks of data is needed?");
     // input the response (convert to int)
     int weeks = int.Parse(Console.ReadLine());
@@ -25,7 +19,7 @@ else if (resp == "2")
     DateTime dataEndDate = today.AddDays(-(int)today.DayOfWeek);
     // subtract # of weeks from endDate to get startDate
     DateTime dataDate = dataEndDate.AddDays(-(weeks * 7));
-    Console.WriteLine(dataDate);
+    Console.WriteLine("Week of {0:MMM}, {0:dd}, {0:yyyy}", dataDate);
         // random number generator
     Random rnd = new Random();
 
@@ -33,16 +27,37 @@ else if (resp == "2")
     while (dataDate < dataEndDate)
     {
         // 7 days in a week
+        int total = 0;
         int[] hours = new int[7];
         for (int i = 0; i < hours.Length; i++)
         {
             // generate random number of hours slept between 4-12 (inclusive)
             hours[i] = rnd.Next(4, 13);
+            
+            total = +Convert.ToInt32(hours);
+        
         }
         // M/d/yyyy,#|#|#|#|#|#|#
-        Console.WriteLine($"{dataDate:M/d/yy},{string.Join("|", hours)}");
+        Console.WriteLine($"{dataDate:MMMM/dd/yyyy} {string.Join("|", hours)}");
+        Console.WriteLine("Su Mo Tu We Th Fr Sa Tot Avg");
+        Console.WriteLine("-- -- -- -- -- -- -- --  --" );
+        Console.Write($"{string.Join("  ", hours)}");
+        //average hours
+        Console.Write(total);
+        //Console.Write(avg);
+        //Total hours
+        
         // add 1 week to date
         dataDate = dataDate.AddDays(7);
     }
+    
+}
+else if (resp == "2")
+{
+    // TODO: parse data file
+
+    // create data file
+
+
 }
     
